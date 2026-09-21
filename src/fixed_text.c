@@ -35,7 +35,7 @@ static void ptbr_global_asm_strings(void) {
 extern unsigned char critter_RODATA_START[];
 static void ptbr_critter_strings(void) {
     PTBR_SLOT(critter_RODATA_START + 0x1E0, "WELL DONE!", "MUITO BEM!", 12);
-    PTBR_SLOT(critter_RODATA_START + 0x1EC, "TIME OUT!", "SEM TEMPO!", 12);
+    PTBR_SLOT(critter_RODATA_START + 0x1EC, "TIME OUT!", "TEMPO ESGOTADO!", 16);
 }
 
 extern unsigned char multiplayer_RODATA_START[];
