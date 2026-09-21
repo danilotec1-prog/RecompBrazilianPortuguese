@@ -1,10 +1,10 @@
 [manifest]
 id = "translation_ptbr"
-version = "1.0.0"
+version = "1.0.1"
 display_name = "Brazilian Portuguese Translation"
 description = "Brazilian Portuguese Translation of DK64. Includes custom font support for the language."
 short_description = "Brazilian Portuguese Translation of DK64"
-authors = [ "danilotec1-prog (localization and review)", "Ballaam (technical framework)", ]
+authors = [ "danilotec1-prog (localization and review)", "Ballaam (technical framework)", "OpenAI Codex (AI tool assistance)" ]
 game_id = "dk64"
 minimum_recomp_version = "1.0.2"
 
@@ -14,3 +14,4 @@ mod_filename = "translation_ptbr"
 func_reference_syms_file = "Dk64Syms/dump.toml"
 data_reference_syms_files = [ "Dk64Syms/data_dump.toml" ]
 additional_files = ["thumb.dds"]
+
