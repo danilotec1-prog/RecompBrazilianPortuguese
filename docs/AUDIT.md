@@ -8,13 +8,13 @@ The local US ROM contains **43 files** in pointer table 12 at master table `0x10
 
 | Text | Evidence | Status |
 |---|---|---|
-| GAME OVER | RAM 0x80755378; reference in func_global_asm_80713B40 at 0x80713C38 | Modification possible; pending |
-| WELL DONE! | critter overlay, RAM 0x8002A190; reference in func_critter_80029118 at 0x80029504 | Modification possible; runtime confirmation needed |
-| TIME OUT! | critter overlay | Pending |
-| BAD LUCK | multiplayer overlay | Pending |
-| LAP BONUS | bonus overlay | Pending |
-| HIGH SCORE, GAME OVER, INSERT COIN, EXIT DK ARCADE | arcade overlay | Pending |
-| JETPAC GAME SELECTION, START GAME, GAME OVER PLAYER %d | jetpac overlay | Pending |
+| GAME OVER | RAM 0x80755378; reference in func_global_asm_80713B40 at 0x80713C38 | Implemented in 1.0.1 |
+| WELL DONE! | critter overlay, RAM 0x8002A190; reference in func_critter_80029118 at 0x80029504 | Implemented in 1.0.1 |
+| TIME OUT! | critter overlay | Implemented in 1.0.1 |
+| BAD LUCK | multiplayer overlay | Implemented in 1.0.1 |
+| LAP BONUS | bonus overlay | Implemented in 1.0.1 |
+| HIGH SCORE, GAME OVER, INSERT COIN, EXIT DK ARCADE | arcade overlay | Implemented in 1.0.1 |
+| JETPAC GAME SELECTION, START GAME, GAME OVER PLAYER %d | jetpac overlay | Implemented in 1.0.1 |
 
 Translated bank entries do not replace duplicate strings embedded in code. Longer replacements require redirected pointers or calls with separate buffers. Static references were identified; not all runtime call paths were traced. Textures and 3D objects containing words still require visual auditing.
 
@@ -27,3 +27,5 @@ References: [Nintendo manual](https://www.nintendo.com/eu/media/downloads/games_
 ## Font Review
 
 The maintainer confirmed that the unwanted detail on E was resolved after the tilde update. The yellow C-cedilla now uses the original C at full size and baseline, with the cedilla extending below it. Package checks do not replace visual validation of this latest adjustment in game. 
+
+Version 1.0.1 adds 32 bounded replacements using the existing frame event. The maintainer confirmed that the corrected package works in game; exhaustive coverage and layout testing remain ongoing.
