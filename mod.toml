@@ -1,10 +1,10 @@
 [manifest]
 id = "translation_ptbr"
-version = "1.0.1"
+version = "1.0.2"
 display_name = "Brazilian Portuguese Translation"
 description = "Brazilian Portuguese Translation of DK64. Includes custom font support for the language."
 short_description = "Brazilian Portuguese Translation of DK64"
-authors = [ "danilotec1-prog (localization and review)", "Ballaam (technical framework)", "OpenAI Codex (AI tool assistance)" ]
+authors = [ "danilotec1-prog" ]
 game_id = "dk64"
 minimum_recomp_version = "1.0.2"
 
