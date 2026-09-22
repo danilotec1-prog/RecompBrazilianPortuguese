@@ -26,6 +26,11 @@ RECOMP_PATCH void arcade_draw_text(Gfx **gpp, char *string) {
     gDPSetPrimColor(gp++, 0, 0, arcade_text_red, arcade_text_green, arcade_text_blue, arcade_text_alpha);
     gDPSetCombineMode(gp++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
     gDPSetRenderMode(gp++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    /* The original splits this sentence at fixed x positions. Leave one
+     * 8-pixel space after the 12-character Portuguese first fragment. */
+    if (x == 176 && y == 123 &&
+        ptbr_text_equal((unsigned char*)string,"REGISTRADO."))
+        x = 168;
     if (!revised) {
         *gpp = func_global_asm_806FD490(gp,2,x,y,string);
         return;
