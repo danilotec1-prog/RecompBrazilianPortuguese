@@ -8,7 +8,7 @@ static int ptbr_text_equal(const unsigned char *a, const char *b) {
 }
 static unsigned char *ptbr_long_message(unsigned char *text) {
     if (ptbr_text_equal(text,"WELL DONE!") || ptbr_text_equal(text,"MUITO BEM!"))
-        return (unsigned char*)"BOM TRABALHO!";
+        return (unsigned char*)"MANDOU BEM!";
     if (ptbr_text_equal(text,"LAP BONUS") || ptbr_text_equal(text,"B\324NUS VOLTA"))
         return (unsigned char*)"B\324NUS DE VOLTA";
     return text;
