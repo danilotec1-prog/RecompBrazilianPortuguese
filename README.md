@@ -21,7 +21,7 @@ Notes:
 - On Linux/macOS, ensure `zip` is installed for packaging workflows.
 
 ## Building from Source
-Clone this repository and obtain the dependencies listed in `.gitmodules`:
+Clone this repository and obtain the build dependencies separately:
 
 ```bash
 git clone https://github.com/danilotec1-prog/RecompBrazilianPortuguese.git
