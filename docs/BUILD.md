@@ -11,3 +11,5 @@ To regenerate font atlases, run `python joiner.py` from `font/`. Only PNGs refer
 Yellow atlas: RGBA5551, 72 x 28, 4032 bytes per page. White atlas: IA8, 256 x 16. Dimensions are generated in `font.h` and used by the loader. 
 
 Opening subtitles use F3DEX2 commands; `src/intro_subtitles.c` selects that encoding explicitly and checks it at compile time. The 1.0.3 package uses MIPS hard-float ABI32. Do not enable soft-float when rebuilding.
+
+Regenerate supplementary TXT edits with `python text_converter/extra_converter.py` from the repository root before building. Running `text_converter/converter.py` from its directory also regenerates them. See [editing instructions](EDITING_TEXTS.md).

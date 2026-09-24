@@ -17,7 +17,7 @@ RECOMP_PATCH void arcade_draw_text(Gfx **gpp, char *string) {
     unsigned int i, count = 0;
     s16 x = (s16)arcade_text_x, y = (s16)arcade_text_y;
     int revised = translated != (unsigned char*)string;
-    int columns = ptbr_text_equal(translated,"JOGADOR    FICHA");
+    int columns = ptbr_text_equal(translated,PTBR_ARCADE_COLUMNS);
     int has_accents = 0;
     gDPPipeSync(gp++);
     gDPSetCycleType(gp++, G_CYC_1CYCLE);
@@ -29,7 +29,7 @@ RECOMP_PATCH void arcade_draw_text(Gfx **gpp, char *string) {
     /* The original splits this sentence at fixed x positions. Leave one
      * 8-pixel space after the 12-character Portuguese first fragment. */
     if (x == 176 && y == 123 &&
-        ptbr_text_equal((unsigned char*)string,"REGISTRADO."))
+        ptbr_text_equal((unsigned char*)string,PTBR_ARCADE_REGISTERED))
         x = 168;
     if (!revised) {
         *gpp = func_global_asm_806FD490(gp,2,x,y,string);
@@ -37,8 +37,8 @@ RECOMP_PATCH void arcade_draw_text(Gfx **gpp, char *string) {
     }
     if (columns) {
         /* Center the headers over the existing 1 / 1 numeric columns. */
-        gp = func_global_asm_806FD490(gp,2,96,y,"JOGADOR");
-        *gpp = func_global_asm_806FD490(gp,2,176,y,"FICHA");
+        gp = func_global_asm_806FD490(gp,2,96,y,PTBR_ARCADE_PLAYER);
+        *gpp = func_global_asm_806FD490(gp,2,176,y,PTBR_ARCADE_COIN);
         return;
     }
     while (translated[count] && count < sizeof(base)-1) {
@@ -51,9 +51,9 @@ RECOMP_PATCH void arcade_draw_text(Gfx **gpp, char *string) {
         base[count++]=(char)c;
     }
     base[count]=0;
-    if (ptbr_text_equal(translated,"INSIRA UMA FICHA") ||
-        ptbr_text_equal(translated,"SAIR DO ARCADE DK") ||
-        ptbr_text_equal(translated,"AT\311 ONDE VOC\312 CONSEGUE CHEGAR ?"))
+    if (ptbr_text_equal(translated,PTBR_ARCADE_INSERT) ||
+        ptbr_text_equal(translated,PTBR_ARCADE_EXIT) ||
+        ptbr_text_equal(translated,PTBR_ARCADE_HEIGHT))
         x=(320-(s16)count*8)/2;
     gp=func_global_asm_806FD490(gp,2,x,y,base);
     if (has_accents && arcade_text_alpha) {

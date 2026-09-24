@@ -9,6 +9,7 @@
 #include "recomputils.h"
 #include "ultra64.h"
 #include "font.h"
+#include "extra_texts.h"
 #if defined(G_SETOTHERMODE_H) && (G_SETOTHERMODE_H != 0xE3 || G_RDPHALF_1 != 0xE1)
 #error Subtitle renderer requires the DK64 F3DEX2 command encoding
 #endif
@@ -23,8 +24,6 @@ _Static_assert(sizeof(SubtitleOverlay) == 12, "original overlay layout");
 extern SubtitleOverlay D_global_asm_807FC630[];
 extern u8 D_global_asm_807501E0, is_cutscene_active;
 extern s32 current_map;
-extern s16 D_global_asm_807476F4, D_global_asm_807F5CEC;
-extern u16 D_global_asm_807F5CF0;
 extern s16 D_global_asm_80744490, D_global_asm_80744494;
 extern u8 isIntroStoryPlaying(void);
 extern Gfx D_1000118[];
@@ -32,7 +31,6 @@ extern s16 D_global_asm_807444B0, D_global_asm_807444AC;
 extern CharStruct font_6_characters[];
 extern u8 fontstring_6[], fontstarts_6[];
 extern s8 fontydeltas_6[];
-extern u8 *fonttextures_6[];
 extern Gfx *func_global_asm_806FBEF0(Gfx *dl, u8 font, s16 page);
 
 static int glyph_index(u8 c) {
@@ -46,21 +44,7 @@ void ptbr_subtitle_dl_budget(s32 *commands) { *commands += 2048; }
 
 enum { SPEAKER_KROOL, SPEAKER_KLUMP };
 typedef struct { f32 start,end; const u8 *first,*second; u8 speaker; } IntroCue;
-static const IntroCue cues[] = {
-    {108.30f,112.54f,(const u8*)"ESPEREI MUITO TEMPO POR ESTE MOMENTO.",(const u8*)"",SPEAKER_KROOL},
-    {112.54f,118.83f,(const u8*)"EM BREVE, DONKEY KONG E SUA LINDA",(const u8*)"ILHAZINHA DEIXAR\303O DE EXISTIR!",SPEAKER_KROOL},
-    {205.22f,206.87f,(const u8*)"GUARDAS!",(const u8*)"",SPEAKER_KROOL},
-    {220.78f,226.73f,(const u8*)"FA\307AM TUDO O QUE PUDEREM",(const u8*)"PARA MANTER DONKEY KONG DISTRA\315DO.",SPEAKER_KROOL},
-    {226.86f,230.98f,(const u8*)"ROUBEM O ESTOQUE DE BANANAS DOURADAS",(const u8*)"QUE ELE TANTO PREZA...",SPEAKER_KROOL},
-    {230.98f,233.99f,(const u8*)"...E DEEM UM JEITO",(const u8*)"NAQUELES AMIGOS PAT\311TICOS DELE.",SPEAKER_KROOL},
-    {234.16f,237.22f,(const u8*)"DESTA VEZ, N\303O PODE HAVER ERROS!",(const u8*)"",SPEAKER_KROOL},
-    {239.30f,244.38f,(const u8*)"VOSSA EXCEL\312NCIA,",(const u8*)"J\301 CUIDAMOS DE TUDO!",SPEAKER_KLUMP},
-    {248.76f,253.01f,(const u8*)"PARA O SEU BEM, ESPERO",(const u8*)"QUE ESTEJA CERTO DESTA VEZ.",SPEAKER_KROOL},
-    {254.10f,255.03f,(const u8*)"N\303O!",(const u8*)"",SPEAKER_KLUMP},
-    {256.47f,261.04f,(const u8*)"ENQUANTO VOC\312 PROCURA",(const u8*)"SUAS PRECIOSAS BANANAS DOURADAS...",SPEAKER_KROOL},
-    {261.04f,263.14f,(const u8*)"...E SEUS AMIGOS PULGUENTOS...",(const u8*)"",SPEAKER_KROOL},
-    {263.14f,267.10f,(const u8*)"...VOU PREPARAR UMA SURPRESA",(const u8*)"COM GOSTINHO DE LAGARTO!",SPEAKER_KROOL},
-};
+#include "intro_cues.h"
 static f32 intro_seconds;
 static int clock_running, current_cue=-1;
 static u32 last_clock;
@@ -86,13 +70,11 @@ static void update_cue_clock(void) {
     if(is_cutscene_active!=6 && delta<2.0f) intro_seconds+=delta;
     if(visible()) for(i=0;i<(int)(sizeof(cues)/sizeof(cues[0]));++i)
         if(intro_seconds>=cues[i].start && intro_seconds<cues[i].end) {next=i;break;}
-    if(next!=current_cue) {
-        current_cue=next;
-    }
+    current_cue=next;
 }
 
 RECOMP_CALLBACK("*", dk64recomp_every_frame)
-void ptbr_intro_trace(void) {
+void ptbr_intro_update(void) {
     update_cue_clock();
 }
 
@@ -158,7 +140,7 @@ static Gfx *draw_subtitles(Gfx *dl) {
     if(!visible() || current_cue<0) return dl;
     const IntroCue *cue=&cues[current_cue];
     int lines=cue->second[0] ? 2 : 1;
-    dl=draw_line(dl,(const u8*)(cue->speaker==SPEAKER_KROOL?"K.ROOL:":"KLUMP:"),-1,1);
+    dl=draw_line(dl,(const u8*)(cue->speaker==SPEAKER_KROOL?PTBR_SPEAKER_KROOL:PTBR_SPEAKER_KLUMP),-1,1);
     dl=draw_line(dl,cue->first,0,lines);
     if(lines==2) dl=draw_line(dl,cue->second,1,lines);
     return dl;

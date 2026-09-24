@@ -1,3 +1,4 @@
+#include "extra_texts.h"
 /* Fixed UI messages omitted from the text banks.
  * Addresses are symbol-relative for overlay relocation. The existing per-frame event is used instead of vanilla function hooks.
  * Overlay code signatures and pointer bounds are checked before dispatch. Original bytes AND zero padding must
@@ -29,58 +30,50 @@ __attribute__((noinline)) static void ptbr_replace_slot(unsigned char *dst, cons
 
 extern unsigned char D_global_asm_80755378[];
 static void ptbr_global_asm_strings(void) {
-    PTBR_SLOT(D_global_asm_80755378 + 0x0, "GAME OVER", "FIM DE JOGO", 12);
+    PTBR_SLOT(D_global_asm_80755378 + 0x0, "GAME OVER", PTBR_GAME_OVER, 12);
 }
 
 extern unsigned char critter_RODATA_START[];
 static void ptbr_critter_strings(void) {
-    PTBR_SLOT(critter_RODATA_START + 0x1E0, "WELL DONE!", "MUITO BEM!", 12);
-    PTBR_SLOT(critter_RODATA_START + 0x1EC, "TIME OUT!", "TEMPO ESGOTADO!", 16);
+    PTBR_SLOT(critter_RODATA_START + 0x1EC, "TIME OUT!", PTBR_TIME_OUT, 16);
 }
 
 extern unsigned char multiplayer_RODATA_START[];
 static void ptbr_multiplayer_strings(void) {
-    PTBR_SLOT(multiplayer_RODATA_START + 0x4, "BAD LUCK", "QUE AZAR", 12);
+    PTBR_SLOT(multiplayer_RODATA_START + 0x4, "BAD LUCK", PTBR_BAD_LUCK, 12);
 }
 
 extern unsigned char bonus_RODATA_START[];
 static void ptbr_bonus_strings(void) {
-    PTBR_SLOT(bonus_RODATA_START + 0x594, "SCORE", "PONTOS", 8);
-    PTBR_SLOT(bonus_RODATA_START + 0x59C, "LAP BONUS", "B\324NUS VOLTA", 12);
+    PTBR_SLOT(bonus_RODATA_START + 0x594, "SCORE", PTBR_SCORE, 8);
 }
 
 extern unsigned char arcade_RODATA_START[];
 static void ptbr_arcade_strings(void) {
-    PTBR_SLOT(arcade_RODATA_START + 0x0, "NAME %.3s", "NOME %.3s", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0x10, "REGI TIME <%02d>", "TEMPO <%02d>", 20);
-    PTBR_SLOT(arcade_RODATA_START + 0x24, "YOUR NAME WAS", "SEU NOME FOI", 16);
-    PTBR_SLOT(arcade_RODATA_START + 0x34, "REGISTERED.", "REGISTRADO.", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0x40, "NAME REGISTRATION", "REGISTRO DE NOME", 20);
-    PTBR_SLOT(arcade_RODATA_START + 0xAC, "CREDIT 00", "FICHAS 00", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0xBC, "HIGH SCORE", "RECORDE", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0xE0, "GAME OVER", "FIM DE JOGO", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0xEC, "RETURN", "VOLTAR", 8);
-    PTBR_SLOT(arcade_RODATA_START + 0xF4, "DELETE HISCORE", "ZERAR RECORDE", 16);
-    PTBR_SLOT(arcade_RODATA_START + 0x104, "EXIT DK ARCADE", "SAIR DO ARCADE", 16);
-    PTBR_SLOT(arcade_RODATA_START + 0x11C, "HOW HIGH CAN YOU GET ?", "ATE ONDE VOCE CHEGA ?", 24);
-    PTBR_SLOT(arcade_RODATA_START + 0x154, "INSERT COIN", "USE A FICHA", 12);
-    PTBR_SLOT(arcade_RODATA_START + 0x160, "PLAYER    COIN", "JOGADOR FICHA", 16);
-    PTBR_SLOT(arcade_RODATA_START + 0x17C, "RANK  SCORE  NAME", "POS. PONTOS NOME", 20);
+    PTBR_SLOT(arcade_RODATA_START + 0x0, "NAME %.3s", PTBR_ARCADE_NAME, 12);
+    PTBR_SLOT(arcade_RODATA_START + 0x10, "REGI TIME <%02d>", PTBR_ARCADE_TIME, 20);
+    PTBR_SLOT(arcade_RODATA_START + 0x24, "YOUR NAME WAS", PTBR_ARCADE_NAME_WAS, 16);
+    PTBR_SLOT(arcade_RODATA_START + 0x34, "REGISTERED.", PTBR_ARCADE_REGISTERED, 12);
+    PTBR_SLOT(arcade_RODATA_START + 0x40, "NAME REGISTRATION", PTBR_ARCADE_REGISTRATION, 20);
+    PTBR_SLOT(arcade_RODATA_START + 0xBC, "HIGH SCORE", PTBR_ARCADE_RECORD, 12);
+    PTBR_SLOT(arcade_RODATA_START + 0xE0, "GAME OVER", PTBR_ARCADE_GAME_OVER, 12);
+    PTBR_SLOT(arcade_RODATA_START + 0xEC, "RETURN", PTBR_ARCADE_RETURN, 8);
+    PTBR_SLOT(arcade_RODATA_START + 0xF4, "DELETE HISCORE", PTBR_ARCADE_DELETE, 16);
+    PTBR_SLOT(arcade_RODATA_START + 0x17C, "RANK  SCORE  NAME", PTBR_ARCADE_RANK, 20);
 }
 
 extern unsigned char jetpac_RODATA_START[];
 static void ptbr_jetpac_strings(void) {
-    PTBR_SLOT(jetpac_RODATA_START + 0x28, "JETPAC GAME SELECTION", "JETPAC - MENU DO JOGO", 24);
-    PTBR_SLOT(jetpac_RODATA_START + 0x40, "1@@@1@PLAYER@GAME", "1@@@1@JOGADOR", 20);
-    PTBR_SLOT(jetpac_RODATA_START + 0x54, "2@@@2@PLAYER@GAME", "2@@@2@JOGADORES", 20);
-    PTBR_SLOT(jetpac_RODATA_START + 0x68, "3@@@KEYBOARD", "3@@@TECLADO", 16);
-    PTBR_SLOT(jetpac_RODATA_START + 0x78, "4@@@KEMPSTON@JOYSTICK", "4@@@CONTROLE@KEMPSTON", 24);
-    PTBR_SLOT(jetpac_RODATA_START + 0x90, "5   START GAME", "5   JOGAR", 16);
-    PTBR_SLOT(jetpac_RODATA_START + 0xC4, "RETURN", "VOLTAR", 8);
-    PTBR_SLOT(jetpac_RODATA_START + 0xCC, "DELETE@HISCORE", "ZERAR@RECORDE", 16);
-    PTBR_SLOT(jetpac_RODATA_START + 0xDC, "EXIT@@JETPAC", "SAIR@DO@JETPAC", 16);
-    PTBR_SLOT(jetpac_RODATA_START + 0xEC, "RAREWARE COIN COLLECTED", "MOEDA RAREWARE OBTIDA", 24);
-    PTBR_SLOT(jetpac_RODATA_START + 0x104, "GAME OVER PLAYER %d", "FIM DE JOGO - J%d", 20);
+    PTBR_SLOT(jetpac_RODATA_START + 0x28, "JETPAC GAME SELECTION", PTBR_JETPAC_MENU, 24);
+    PTBR_SLOT(jetpac_RODATA_START + 0x40, "1@@@1@PLAYER@GAME", PTBR_JETPAC_ONE_PLAYER, 20);
+    PTBR_SLOT(jetpac_RODATA_START + 0x54, "2@@@2@PLAYER@GAME", PTBR_JETPAC_TWO_PLAYERS, 20);
+    PTBR_SLOT(jetpac_RODATA_START + 0x68, "3@@@KEYBOARD", PTBR_JETPAC_KEYBOARD, 16);
+    PTBR_SLOT(jetpac_RODATA_START + 0x78, "4@@@KEMPSTON@JOYSTICK", PTBR_JETPAC_CONTROLLER, 24);
+    PTBR_SLOT(jetpac_RODATA_START + 0xC4, "RETURN", PTBR_JETPAC_RETURN, 8);
+    PTBR_SLOT(jetpac_RODATA_START + 0xCC, "DELETE@HISCORE", PTBR_JETPAC_DELETE, 16);
+    PTBR_SLOT(jetpac_RODATA_START + 0xDC, "EXIT@@JETPAC", PTBR_JETPAC_EXIT, 16);
+    PTBR_SLOT(jetpac_RODATA_START + 0xEC, "RAREWARE COIN COLLECTED", PTBR_JETPAC_COIN, 24);
+    PTBR_SLOT(jetpac_RODATA_START + 0x104, "GAME OVER PLAYER %d", PTBR_JETPAC_GAME_OVER, 20);
 }
 
 /* Only inspect loaded N64 RDRAM. The signature identifies the overlay even

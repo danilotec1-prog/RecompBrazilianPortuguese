@@ -4,8 +4,10 @@ from pathlib import Path
 from enum import IntEnum
 from text_encoder import writeText
 
-txt_files = sorted(Path("../text_files").glob("*.txt"), key=lambda p: int(p.name.split("]")[0][1:]))
-assert [int(p.name.split("]")[0][1:]) for p in txt_files] == list(range(43))
+# Files 43 and 44 are supplementary inputs, not ROM text banks.
+all_text_files = sorted(Path("../text_files").glob("*.txt"), key=lambda p: int(p.name.split("]")[0][1:]))
+assert [int(p.name.split("]")[0][1:]) for p in all_text_files] == list(range(45))
+txt_files = all_text_files[:43]
 
 class Icons(IntEnum):
     """Icons enum."""
@@ -242,3 +244,6 @@ with open("../src/text.c", "w") as fh:
     for size in file_sizes:
         fh.write(f"\t{hex(size)},\n")
     fh.write("};\n")
+# Generate the text used outside the original text banks.
+from extra_converter import generate
+generate()

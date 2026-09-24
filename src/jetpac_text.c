@@ -9,7 +9,7 @@ RECOMP_PATCH
 void func_jetpac_8002AEFC(Gfx **arg0, char *string, s32 x, s32 y, s32 arg4) {
     Gfx *dl;
 
-    if (ptbr_text_equal((u8*)string,"5   START GAME") || ptbr_text_equal((u8*)string,"5   JOGAR")) string="5   INICIAR JOGO";
+    if (ptbr_text_equal((u8*)string,"5   START GAME")) string=PTBR_JETPAC_START;
     dl = *arg0;
     if (arg4 != 0) {
         gDPSetPrimColor(dl++, 0, 0, D_jetpac_8002E9C0, D_jetpac_8002E9C4, D_jetpac_8002E9C8, D_jetpac_8002E9CC);

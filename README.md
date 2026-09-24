@@ -4,11 +4,19 @@ Brazilian Portuguese Translation of DK64
 
 ![Mod thumbnail](thumb.png)
 
+## Opening Cutscene Subtitles
+
+Version 1.0.3 adds Brazilian Portuguese subtitles for the main spoken dialogue in the opening story cutscene. Speaker names appear in the upper black bar, with dialogue below the picture. K. Rool uses green captions and Klump uses orange captions. See [subtitle notes](docs/INTRO_SUBTITLES.md) for implementation details and limitations.
+
 ## Installation
 1. Download the latest `translation_ptbr.nrm` from [Releases](https://github.com/danilotec1-prog/RecompBrazilianPortuguese/releases).
 2. Put the file in your DK64 Recompiled mods folder.
    - Example (Windows): `C:\Users\<YourUser>\AppData\Local\DK64Recompiled\mods`
 3. Launch DK64 Rekongpiled 1.0.2 or newer and enable the mod from the mods menu. Disable other language mods and restart the game.
+
+## Editing Translations
+
+Opening subtitles and supplementary UI messages can be edited in UTF-8 TXT files in `text_files/[43] - Extra Text.txt` and `text_files/[44] - Intro Subtitles.txt`. See [editing instructions](docs/EDITING_TEXTS.md) for file formats, validation and regeneration. The original numbered text banks remain in `text_files/`.
 
 ## Build Requirements
 - `clang`
@@ -64,9 +72,6 @@ The produced mod file is named `translation_ptbr.nrm`.
 Based on [RecompSpanish](https://github.com/theballaam96/RecompSpanish) by Ballaam. Brazilian Portuguese localization and review by [danilotec1-prog](https://github.com/danilotec1-prog).
 
 AI (OpenAI Codex) was used as a support tool in developing tools for this mod. See [CREDITS.md](CREDITS.md) for full attribution and [license notices](LICENSES/README.md) for third-party notices.
-
-See [text and font audit](docs/AUDIT.md) for coverage and remaining untranslated content, and [BUILD.md](docs/BUILD.md) for build details.
-
 
 ## Feedback
 
