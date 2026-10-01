@@ -1,12 +1,14 @@
+# Projeto transferido
+
+A tradução passou a ser mantida neste repositório:
+
+https://github.com/brigandier/RecompBrazilianPortuguese
+
+Acesse o novo endereço para baixar a versão atual e acompanhar as atualizações.
+
 # Brazilian Portuguese Translation
 
 Brazilian Portuguese Translation of DK64
-
-![Mod thumbnail](thumb.png)
-
-## Opening Cutscene Subtitles
-
-Version 1.0.3 adds Brazilian Portuguese subtitles for the main spoken dialogue in the opening story cutscene. Speaker names appear in the upper black bar, with dialogue below the picture. K. Rool uses green captions and Klump uses orange captions. See [subtitle notes](docs/INTRO_SUBTITLES.md) for implementation details and limitations.
 
 ## Installation
 1. Download the latest `translation_ptbr.nrm` from [Releases](https://github.com/danilotec1-prog/RecompBrazilianPortuguese/releases).
@@ -70,8 +72,6 @@ The produced mod file is named `translation_ptbr.nrm`.
 
 ## Credits
 Based on [RecompSpanish](https://github.com/theballaam96/RecompSpanish) by Ballaam. Brazilian Portuguese localization and review by [danilotec1-prog](https://github.com/danilotec1-prog).
-
-AI (OpenAI Codex) was used as a support tool in developing tools for this mod. See [CREDITS.md](CREDITS.md) for full attribution and [license notices](LICENSES/README.md) for third-party notices.
 
 ## Feedback
 
